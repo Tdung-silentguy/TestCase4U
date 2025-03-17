@@ -61,7 +61,7 @@ cleanup
 mkdir "$TC_DIR"
 
 
-echo "Testcase $IDX:"  #1
+echo -n "Testcase $IDX: "  #1
 sudo bash "$SETUP_SCRIPT" --install > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 && -f "$INSTALL_PATH" && -x "$INSTALL_PATH" ]]; then
     print_result 0 "Success"
@@ -77,7 +77,7 @@ touch "$TEST_DIR/src/main.c" "$TEST_DIR/src/utils.c"
 cd "$TEST_DIR"
 
 # Basic error
-echo "Testcase $IDX:"  #2
+echo -n "Testcase $IDX: "  #2
 bku add > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -85,7 +85,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #3
+echo -n "Testcase $IDX: "  #3
 bku add src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -93,7 +93,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #4
+echo -n "Testcase $IDX: "  #4
 bku add main > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -101,7 +101,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #5
+echo -n "Testcase $IDX: "  #5
 bku status > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -109,7 +109,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #6
+echo -n "Testcase $IDX: "  #6
 bku status src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -117,7 +117,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #7
+echo -n "Testcase $IDX: "  #7
 bku status ./main > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -125,7 +125,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #8
+echo -n "Testcase $IDX: "  #8
 bku commit "First" > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -133,7 +133,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #9
+echo -n "Testcase $IDX: "  #9
 bku commit "First" src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -141,7 +141,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #10
+echo -n "Testcase $IDX: "  #10
 bku commit "First" src/main > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -149,7 +149,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #11
+echo -n "Testcase $IDX: "  #11
 bku commit src/main > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -157,7 +157,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #12
+echo -n "Testcase $IDX: "  #12
 bku history > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -165,7 +165,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #13
+echo -n "Testcase $IDX: "  #13
 bku schedule > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -173,7 +173,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #14
+echo -n "Testcase $IDX: "  #14
 bku schedule --daily > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -181,7 +181,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #15
+echo -n "Testcase $IDX: "  #15
 bku schedule --off > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -189,7 +189,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #16
+echo -n "Testcase $IDX: "  #16
 bku stop > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -198,7 +198,7 @@ else
 fi
 
 # Test init
-echo "Testcase $IDX:"  #17
+echo -n "Testcase $IDX: "  #17
 bku init > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 && -d ".bku" ]]; then
     print_result 0 "Success"
@@ -206,7 +206,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #18
+echo -n "Testcase $IDX: "  #18
 bku init > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -215,7 +215,7 @@ else
 fi
 
 # Test add
-echo "Testcase $IDX:"  #19
+echo -n "Testcase $IDX: "  #19
 bku add ./src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -223,7 +223,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #20
+echo -n "Testcase $IDX: "  #20
 bku add ../src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -231,7 +231,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #21
+echo -n "Testcase $IDX: "  #21
 bku add src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -240,7 +240,7 @@ else
 fi
 
 # Restore error
-echo "Testcase $IDX:"  #22
+echo -n "Testcase $IDX: "  #22
 bku restore ./src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -248,7 +248,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #23
+echo -n "Testcase $IDX: "  #23
 bku restore > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -256,7 +256,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #24
+echo -n "Testcase $IDX: "  #24
 bku add src/utils > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -264,7 +264,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #25
+echo -n "Testcase $IDX: "  #25
 bku add > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -272,7 +272,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #26
+echo -n "Testcase $IDX: "  #26
 bku add > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -281,7 +281,7 @@ else
 fi
 
 # Test status
-echo "Testcase $IDX:"  #27
+echo -n "Testcase $IDX: "  #27
 bku status ./src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -289,7 +289,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #28
+echo -n "Testcase $IDX: "  #28
 bku status ../src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -297,7 +297,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #29
+echo -n "Testcase $IDX: "  #29
 bku status ./main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -305,7 +305,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #30
+echo -n "Testcase $IDX: "  #30
 bku status > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -316,7 +316,7 @@ fi
 mkdir src/python
 echo -e "print(\"An is here\")" > src/python/main.py
 
-echo "Testcase $IDX:"  #31
+echo -n "Testcase $IDX: "  #31
 bku status ./src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -326,7 +326,7 @@ fi
 
 echo -e "#include <stdio.h>\n\nint main() {\n printf(\"An is not here\n\");\n return 0;\n}" > src/main.c
 
-echo "Testcase $IDX:"  #32
+echo -n "Testcase $IDX: "  #32
 bku status ../src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -334,7 +334,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #33
+echo -n "Testcase $IDX: "  #33
 bku status ./src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -344,7 +344,7 @@ fi
 
 touch src/main.java
 # Test add again
-echo "Testcase $IDX:"  #34
+echo -n "Testcase $IDX: "  #34
 bku add > $TC_DIR/tc$IDX.txt 2>&1 # /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -355,7 +355,7 @@ fi
 echo -e "public class main {\n public static void main(String[] args) {\n  System.out.println(\"Hello, World!\");\n }\n}" > src/main.java
 
 # Test status again
-echo "Testcase $IDX:"  #35
+echo -n "Testcase $IDX: "  #35
 bku status src/main.java > $TC_DIR/tc$IDX.txt 2>&1 # /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -363,7 +363,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #36
+echo -n "Testcase $IDX: "  #36
 bku status > $TC_DIR/tc$IDX.txt 2>&1 # /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -372,7 +372,7 @@ else
 fi
 
 # Test restore before commit
-echo "Testcase $IDX:"  #37
+echo -n "Testcase $IDX: "  #37
 before=$(cat src/main.java)
 bku restore src/main.java > $TC_DIR/tc$IDX.txt 2>&1
 exit=$?
@@ -383,7 +383,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #38
+echo -n "Testcase $IDX: "  #38
 before=$(cat src/main.java)
 bku restore src/main.java > $TC_DIR/tc$IDX.txt 2>&1
 exit=$?
@@ -395,7 +395,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #39
+echo -n "Testcase $IDX: "  #39
 bku restore src/main > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -403,7 +403,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #40
+echo -n "Testcase $IDX: "  #40
 before=$(cat src/main.c)
 bku restore > $TC_DIR/tc$IDX.txt 2>&1 
 echo -e "\nsrc/main\n[Before]\n$before\n[After]\n$(cat src/main.c)" >> $TC_DIR/tc$IDX.txt
@@ -414,7 +414,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #41
+echo -n "Testcase $IDX: "  #41
 bku status > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -423,7 +423,7 @@ else
 fi
 
 # Test commit
-echo "Testcase $IDX:"  #42
+echo -n "Testcase $IDX: "  #42
 bku commit > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -431,7 +431,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #43
+echo -n "Testcase $IDX: "  #43
 bku commit "" > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -439,7 +439,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #44
+echo -n "Testcase $IDX: "  #44
 bku commit " " > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -447,7 +447,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #45
+echo -n "Testcase $IDX: "  #45
 bku commit " " > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -457,7 +457,7 @@ fi
 
 echo -e "print(\"An disappeared! \")" > src/python/main.py
 
-echo "Testcase $IDX:"  #46
+echo -n "Testcase $IDX: "  #46
 bku commit " " ./src/main.c > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -465,7 +465,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #47
+echo -n "Testcase $IDX: "  #47
 bku commit " " src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -474,7 +474,7 @@ else
 fi
 
 echo -e "#include <stdio.h>\n\nint main() {\n printf(\"An is not here\n\");\n return 0;\n}" > src/main.c
-echo "Testcase $IDX:"  #48
+echo -n "Testcase $IDX: "  #48
 bku status > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -483,7 +483,7 @@ else
 fi
 
 # Test restore after commit
-echo "Testcase $IDX:"  #49
+echo -n "Testcase $IDX: "  #49
 bku restore ../src/main.c > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -491,7 +491,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #50
+echo -n "Testcase $IDX: "  #50
 before=$(cat src/main.c)
 bku restore ./src/main.c > $TC_DIR/tc$IDX.txt 2>&1 
 exit=$?
@@ -502,7 +502,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #51
+echo -n "Testcase $IDX: "  #51
 bku restore src/main.c > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -510,7 +510,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #52
+echo -n "Testcase $IDX: "  #52
 before=$(cat src/python/main.py)
 bku restore src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 exit=$?
@@ -521,7 +521,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #53
+echo -n "Testcase $IDX: "  #53
 before=$(cat src/python/main.py)
 bku restore src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 exit=$?
@@ -532,7 +532,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #54
+echo -n "Testcase $IDX: "  #54
 bku status src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -540,7 +540,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #55
+echo -n "Testcase $IDX: "  #55
 bku commit Commitforpython src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -548,7 +548,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #56
+echo -n "Testcase $IDX: "  #56
 bku commit src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -556,7 +556,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #57
+echo -n "Testcase $IDX: "  #57
 bku commit "Commit for python" src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -564,7 +564,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX:"  #58 (question?, ib me)
+echo -n "Testcase $IDX: "  #58 (question?, ib me)
 bku restore src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -572,7 +572,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #59
+echo -n "Testcase $IDX: "  #59
 bku commit " " src/python/main.py > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -584,7 +584,7 @@ echo "Welcome" > helper/text.txt
 bku add ./helper/text.txt > /dev/null 2>&1
 echo "Welcome my world" > helper/text.txt
 
-echo "Testcase $IDX: "  #60
+echo -n "Testcase $IDX: "  #60
 bku commit "Commit for .txt" ./helper/text.txt > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -592,7 +592,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #61
+echo -n "Testcase $IDX: "  #61
 bku restore ./helper/text.txt > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -602,7 +602,7 @@ fi
 
 echo "Welcome" > helper/text.txt
 
-echo "Testcase $IDX: "  #62
+echo -n "Testcase $IDX: "  #62
 before=$(cat helper/text.txt)
 bku restore ./helper/text.txt > $TC_DIR/tc$IDX.txt 2>&1 
 exit=$?
@@ -617,7 +617,7 @@ echo -e "#include <stdio.h>\n\nint main() {\n printf(\"An is not here\n\");\n re
 echo -e "public class main {\n public static void main(String[] args) {\n  System.out.println(\"Hello, World!\");\n }\n}" > src/main.java
 
 
-echo "Testcase $IDX: "  #63
+echo -n "Testcase $IDX: "  #63
 bku commit "Java and C" > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -627,7 +627,7 @@ fi
 
 echo -e "#include <stdio.h>\n\nint main() {\n printf(\"An is funny\n\");\n return 0;\n}" > src/main.c
 
-echo "Testcase $IDX: "  #64
+echo -n "Testcase $IDX: "  #64
 bku commit "Update main.c" > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -637,7 +637,7 @@ fi
 
 
 
-echo "Testcase $IDX: "  #65
+echo -n "Testcase $IDX: "  #65
 before_1=$(cat src/main.c)
 before_2=$(cat src/main.java)
 bku restore > $TC_DIR/tc$IDX.txt 2>&1 
@@ -651,7 +651,7 @@ else
 fi
 
 
-echo "Testcase $IDX: "  #66
+echo -n "Testcase $IDX: "  #66
 echo "Bash script is funny" > helper/text.txt
 bku commit "Version 2.0 for txt" helper/text.txt >> $TC_DIR/tc$IDX.txt 2>&1 
 echo "Ubuntu so bad" > helper/text.txt
@@ -672,7 +672,7 @@ echo "New file" > helper/file.txt
 echo "Again" > main.c
 echo "Welcome again" > helper/text.txt
 
-echo "Testcase $IDX: "  #67
+echo -n "Testcase $IDX: "  #67
 bku add > $TC_DIR/tc$IDX.txt 2>&1 
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -680,7 +680,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #68
+echo -n "Testcase $IDX: "  #68
 bku commit "New commit" > $TC_DIR/tc$IDX.txt 2>&1
 before=$(cat src/main.c)
 bku restore src/main.c >> $TC_DIR/tc$IDX.txt 2>&1
@@ -692,7 +692,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #69
+echo -n "Testcase $IDX: "  #69
 bku restore src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -706,7 +706,7 @@ for i in {1..50}; do
 done
 
 # Check load
-echo "Testcase $IDX: "  #70
+echo -n "Testcase $IDX: "  #70
 bku add > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -718,7 +718,7 @@ for i in {1..50}; do
     echo "${i}" > "helper/file_load_${i}.txt"
 done
 
-echo "Testcase $IDX: "  #71
+echo -n "Testcase $IDX: "  #71
 bku status > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -726,7 +726,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #72
+echo -n "Testcase $IDX: "  #72
 bku commit "Load 50 files" > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -738,7 +738,7 @@ for i in {1..50}; do
     echo "Same" > "helper/file_load_${i}.txt"
 done
 
-echo "Testcase $IDX: "  #73
+echo -n "Testcase $IDX: "  #73
 bku restore > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -746,7 +746,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #74
+echo -n "Testcase $IDX: "  #74
 bku schedule --daily > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -754,7 +754,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #75
+echo -n "Testcase $IDX: "  #75
 bku schedule --daily > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -762,14 +762,14 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #76
+echo -n "Testcase $IDX: "  #76
 bku schedule --hourly > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
 else
     print_result 1 "Error"
 fi
-echo "Testcase $IDX: "  #77
+echo -n "Testcase $IDX: "  #77
 bku schedule --weekly > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -777,7 +777,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #78
+echo -n "Testcase $IDX: "  #78
 bku schedule --off > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -785,7 +785,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #79
+echo -n "Testcase $IDX: "  #79
 bku schedule --off > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -793,7 +793,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #80
+echo -n "Testcase $IDX: "  #80
 bku history > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -801,7 +801,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #81
+echo -n "Testcase $IDX: "  #81
 bku stop > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -809,7 +809,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #82
+echo -n "Testcase $IDX: "  #82
 bku stop > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -821,7 +821,7 @@ for i in {1..50}; do
     rm -rf "helper/file_load_${i}.txt"
 done
 
-echo "Testcase $IDX: "  #83
+echo -n "Testcase $IDX: "  #83
 bku init > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -829,7 +829,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #84
+echo -n "Testcase $IDX: "  #84
 bku init > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -837,7 +837,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #85
+echo -n "Testcase $IDX: "  #85
 bku commit a > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
@@ -845,7 +845,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #86
+echo -n "Testcase $IDX: "  #86
 bku add src/main.c > $TC_DIR/tc$IDX.txt 2>&1
 bku commit src/main.c >> $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
@@ -854,7 +854,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #82
+echo -n "Testcase $IDX: "  #82
 bku stop > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 ]]; then
     print_result 0 "Success"
@@ -862,7 +862,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #87
+echo -n "Testcase $IDX: "  #87
 cd ..
 sudo bash "$SETUP_SCRIPT" --uninstall > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 0 && ! -f "$INSTALL_PATH" ]]; then
@@ -871,7 +871,7 @@ else
     print_result 1 "Error"
 fi
 
-echo "Testcase $IDX: "  #88
+echo -n "Testcase $IDX: "  #88
 sudo bash "$SETUP_SCRIPT" --uninstall > $TC_DIR/tc$IDX.txt 2>&1
 if [[ $? -eq 1 ]]; then
     print_result 0 "Success"
