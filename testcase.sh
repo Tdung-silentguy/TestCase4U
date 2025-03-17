@@ -887,6 +887,8 @@ echo "Success: $SUCCESS"
 echo "Error: $ERROR"
 echo "Note: Success and Error are based on my results."
 
+OUTPUT="OUTPUT"
+
 read -p "Do you want to merge all _TC_/tc*.txt files into $OUTPUT? [y/n]: " choice
 choice=${choice,,}
 
@@ -896,7 +898,6 @@ if [[ "$choice" != "y" ]]; then
     exit 0
 fi
 
-OUTPUT="OUTPUT"
 > "$OUTPUT"
 
 files=($(ls "$TC_DIR"/tc*.txt 2>/dev/null | sort -V))
