@@ -5,11 +5,65 @@ NC='\e[0m'
 TC_DIR="_OUTPUT_"
 CFGFL="manifest"
 
-mkdir -p $TC_DIR
-
 IDX=0
 SUCCESS=0
 ERROR=0
+
+install_manifest() {
+    echo "[INSTALL] Downloading manifest from GitHub..."
+    wget -O "$CFGFL" https://raw.githubusercontent.com/Trung4n/TestCase4U/main/ossim_sierra/manifest
+    if [[ $? -ne 0 ]]; then
+        echo -e "${RED}Failed to download manifest.${NC}"
+        exit 1
+    fi
+
+    echo -e "${GREEN}Manifest downloaded successfully!${NC}"
+    echo "[INFO] Downloading files listed in manifest..."
+
+    download_file() {
+        local filename="$1"
+        local url="https://raw.githubusercontent.com/Trung4n/TestCase4U/main/ossim_sierra/input/$filename"
+        local dest="input/$filename"
+
+        wget -O "$dest" "$url"
+
+    }
+
+    export -f download_file
+    export GREEN RED NC
+
+    cat "$CFGFL" | xargs -I{} -P 8 bash -c 'download_file "$@"' _ {}
+
+    echo -e "${GREEN}All available files downloaded!${NC}"
+    echo "[INFO] Made by Trung4n"
+    echo -e "${GREEN}If you find this testcase helpful, please give me a star on GitHub <3 ${NC}"
+    exit 0
+}
+
+clean_files() {
+    if [[ ! -f "$CFGFL" ]]; then
+        echo -e "${RED}Manifest file not found: $CFGFL${NC}"
+        exit 1
+    fi
+
+    echo "[CLEAN] Reading file list from manifest..."
+
+    while IFS= read -r filename || [[ -n $filename ]]; do
+        filepath="input/$filename"
+        if [[ -f "$filepath" ]]; then
+            rm "$filepath"
+        fi
+    done < "$CFGFL"
+
+    rm $CFGFL
+    rm -rf $TC_DIR/*.txt
+    rm -r $TC_DIR
+
+    echo -e "${GREEN}Clean completed.${NC}"
+    echo "[INFO] Made by Trung4n"
+    echo -e "${GREEN}If you find this testcase helpful, please give me a star on GitHub <3 ${NC}"
+    exit 0
+}
 
 case "$1" in
     run)
@@ -17,24 +71,21 @@ case "$1" in
     install)
         install_manifest
         ;;
-    *)
-        echo -e "${RED}Invalid option: $1${NC}"
-        echo -e "Usage: ./tc4u <run|install>"
-        exit 1
+    clean)
+        clean_files
         ;;
+    *)
+        echo "Invalid option: $1"
+        echo "Usage: ./tc4u <command>"
+        echo ""
+        echo "Available commands:"
+        echo "  install   Download manifest and test input files from GitHub"
+        echo "  run       Run the test cases"
+        echo "  clean     Clean up files listed in the manifest"
+        echo "[INFO] Made by Trung4n"
+        exit 1
 esac
 
-install_manifest() {
-    echo "[INSTALL] Downloading manifest from GitHub..."
-    wget -O $CFGFL https://raw.githubusercontent.com/Trung4n/TestCase4U/main/$CFGFL
-    if [[ $? -eq 0 ]]; then
-        echo -e "${GREEN}Manifest downloaded successfully!${NC}"
-    else
-        echo -e "${RED}Failed to download manifest.${NC}"
-        exit 1
-    fi
-    exit 0
-}
 
 print_result() {
     if [[ $1 -eq 0 ]]; then
@@ -59,7 +110,7 @@ print_summary(){
 
     exit 0
 }
-
+mkdir -p $TC_DIR
 rm -rf $TC_DIR/*.txt
 
 # Start building
@@ -69,8 +120,14 @@ if ! make all > /dev/null 2>&1; then
     echo -e "${RED}Oh!, your code has a problem.${NC}"
     exit 1
 fi
-
 echo -e "${GREEN}make all succeeded! Build successful!${NC}"
+echo -e "[CHECKING] Starting check manifest..."
+
+if [[ ! -f "$CFGFL" ]]; then
+    echo -e "${RED}Oh! It looks like you haven't downloaded the manifest from GitHub.${NC}"
+    echo -e "Please run ${GREEN}./tc4u install${NC} first."
+    exit 1
+fi
 
 # Start testing
 echo -e "-----------------------------------------------------------------------"
@@ -270,4 +327,3 @@ else
 fi
 
 print_summary
-# wget https://raw.githubusercontent.com/Trung4n/TestCase4U/main/testcase.sh
