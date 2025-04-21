@@ -1,15 +1,24 @@
-# Running Test Cases
 
-## Steps to Run the Test Cases
+## TestCase4U – OSSIM Sierra
 
-1. Download the `testcase.sh` file.
-2. Place the `testcase.sh` file in the same directory as `setup.sh` and `bku.sh`.
-3. Grant execution permission to `testcase.sh` by running:
-   ```sh
-   chmod +x testcase.sh
-   ```
-4. Execute the test case script with:
-   ```sh
-   ./testcase.sh
-   ```
-5. Review the results displayed in the terminal.
+This script helps you easily run, install, and clean up test cases for OSSIM Sierra.
+
+### 📦 How to Use
+
+1. **Download** the `ossim-sierra/tc4u.sh` script and place it in the same folder as your target program.
+2. Open your terminal in that folder.
+3. Run the following commands:
+
+```bash
+# Step 1: Download input files listed in the manifest
+./tc4u install
+
+# Step 2: Run the test cases
+./tc4u run
+
+# Step 3: Clean up downloaded files
+./tc4u clean
+```
+
+### ⚠️ Note
+These test cases are for **reference purposes only** and may not be 100% correct.
