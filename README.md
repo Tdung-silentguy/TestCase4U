@@ -5,7 +5,7 @@ This script helps you easily run, install, and clean up test cases for OSSIM Sie
 
 ### 📦 How to Use
 
-1. **Download** the `ossim-sierra/tc4u.sh` script and place it in the same folder as your target program.
+1. **Download** the `ossim_sierra/tc4u.sh` script and place it in the same folder as your target program.
 2. Open your terminal in that folder.
 3. Run the following commands:
 
