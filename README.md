@@ -10,14 +10,16 @@ This script helps you easily run, install, and clean up test cases for OSSIM Sie
 3. Run the following commands:
 
 ```bash
+chmod +x tc4u.sh
+
 # Step 1: Download input files listed in the manifest
-./tc4u install
+./tc4u.sh install
 
 # Step 2: Run the test cases
-./tc4u run
+./tc4u.sh run
 
 # Step 3: Clean up downloaded files
-./tc4u clean
+./tc4u.sh clean
 ```
 
 ### ⚠️ Note
