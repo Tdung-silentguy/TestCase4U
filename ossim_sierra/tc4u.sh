@@ -207,7 +207,8 @@ fi
 echo "[RUNNING] Testcase 7"
 if ./os os_an_$IDX > "$TC_DIR/os_an_$IDX.txt" 2>&1 && \
    grep -Fxq "OOM: vm_map_ram out of memory " "$TC_DIR/os_an_$IDX.txt" && \
-   grep -Fxq "PID=1 - Region=2 - Address=00000900 - Size=1024 byte" "$TC_DIR/os_an_$IDX.txt"; then
+   ! grep -Fxq "PID=1 - Region=1 - Address=00000400 - Size=1280 byte" "$TC_DIR/os_an_$IDX.txt" && \
+   grep -Fxq "PID=1 - Region=2 - Address=00000400 - Size=1024 byte" "$TC_DIR/os_an_$IDX.txt" ; then
     print_result 0 "Success"
 else
     print_result 1 "Error"
